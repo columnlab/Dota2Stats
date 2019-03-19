@@ -78,14 +78,20 @@ class Hero:
         self.hp_regen, self.mp_regen, self.magic_res, self.day_vision, self.night_vision, self.turn_rate, self.damage_avg,
         self.str_25, self.int_25, self.agi_25])
 '''
-This next section is changing an attribute for the patch. There are two things to take note when implementing a change to an attribute. 
-Firstly (this is more easily explained throught example): You must change the attribute for the patch before it was changed. Such as, Abaddon has his movement speed raised by 5 in patch 7.18, so you would set the conditional to (patchNum == 7.17).
-Secondly: Since the stats are copied from the newest patch, and each change is calculated by going backwards in time, each change is inverted. Abaddon's movement speed is increased by 5 in patch 7.18 so we must remove 5 movement speed from abaddon as we go from patch 7.18 to
-patch 7.17. 
-Thirdly: There are several changes (which are found in another section) that encompass a spectrum of heroes (eg all strength heroes). I added a way to do this without changing every hero. I did not include a note in each case where it applies.
+This next section is changing an attribute for the patch. There are two things to take note when implementing a change to an attribute.
+Firstly (this is more easily explained throught example): You must change the attribute for the patch before it was changed. Such as,
+Abaddon has his movement speed raised by 5 in patch 7.18, so you would set the conditional to (patchNum == 7.17).
+Secondly: Since the stats are copied from the newest patch, and each change is calculated by going backwards in time, each change is
+inverted. Abaddon's movement speed is increased by 5 in patch 7.18 so we must remove 5 movement speed from abaddon as we go from patch 7.18 to
+patch 7.17.
+Thirdly: There are several changes (which are found in another section) that encompass a spectrum of heroes (eg all strength heroes). I added a way to
+do this without changing every hero. I did not include a note in each case where it applies.
 '''
  
 def abaddon(patchNum, hero):
+    if(patchNum == 7.19):
+        hero.movement_speed = 310
+        hero.agility = 17
     if(patchNum == 7.17):
         hero.movement_speed = hero.movement_speed - 5
     if(patchNum == 7.03):
@@ -98,6 +104,9 @@ def abaddon(patchNum, hero):
     return hero
  
 def alchemist(patchNum, hero):
+    if(patchNum == 7.20):
+        hero.movement_speed = hero.movement_speed - 10
+        hero.agility = 16
     #if(patchNum == 7.12):
         #hero.movement_speed = hero.movement_speed + 5 #included in attribute cases
         #hero.armor = hero.armor + 1
@@ -128,6 +137,9 @@ def beastmaster(patchNum, hero):
     return hero
  
 def brewmaster(patchNum, hero):
+    if(patchNum == 7.19):
+        hero.intel_gain = 1.3
+        hero.movement_speed = 295
     if(patchNum == 7.06):
         hero.hp_regen = 0.5
     if(patchNum == 6.82):
@@ -137,6 +149,8 @@ def brewmaster(patchNum, hero):
     return hero
  
 def bristleback(patchNum, hero):
+    if(patchNum == 7.20):
+        hero.str_gain =  2.2
     if(patchNum == 7.05):
         hero.str_gain = 2.5
         hero.damage_upper = hero.damage_upper + 4
@@ -152,6 +166,8 @@ def bristleback(patchNum, hero):
     return hero
  
 def centaur(patchNum, hero):
+    if(patchNum == 7.19):
+        hero.str_gain = 4.3
     if(patchNum == 7.18):
         hero.strength = 25
     if(patchNum == 7.17):
@@ -194,6 +210,10 @@ def clockwerk(patchNum, hero):
     return hero
  
 def doom(patchNum, hero):
+    if(patchNum == 7.19):
+        hero.attack_range = 150
+    if(patchNum == 7.17):
+        hero.movement_speed = 285
     if(patchNum == 7.12):
         hero.armor = hero.armor - 1 #counteract 7.13 attribute case
     if(patchNum == 7.09):
@@ -203,6 +223,8 @@ def doom(patchNum, hero):
     return hero
  
 def dragon_knight(patchNum, hero):
+    if(patchNum == 7.20):
+        hero.movement_speed -= 10
     if(patchNum == 7.15):
         hero.movement_speed = 285
     if(patchNum == 7.09):
@@ -214,6 +236,8 @@ def dragon_knight(patchNum, hero):
     return hero
  
 def earth_spirit(patchNum, hero):
+    if(patchNum == 7.19):
+        hero.str_gain = 3.5
     if(patchNum == 7.17):
         hero.str_gain = 3.2
     if(patchNum == 7.02):
@@ -280,6 +304,8 @@ def kunkka(patchNum, hero):
     return hero
  
 def legion_commander(patchNum, hero):
+    if(patchNum == 7.20):
+        hero.movement_speed -= 15
     if(patchNum == 6.84):
         hero.damage_upper = hero.damage_upper - 4
         hero.damage_lower = hero.damage_lower - 4
@@ -289,6 +315,12 @@ def legion_commander(patchNum, hero):
     return hero
  
 def lifestealer(patchNum, hero):
+    if(patchNum == 7.20):
+        hero.str_gain = 3.6
+        hero.armor -= 2
+        hero.movement_speed -= 15
+    if(patchNum == 7.19):
+        hero.agi_gain = 1.9
     if(patchNum == 7.05):
         hero.str_gain = 3.3
     if(patchNum == 7.03):
@@ -306,6 +338,10 @@ def lifestealer(patchNum, hero):
     return hero
  
 def lycan(patchNum, hero):
+    if(patchNum == 7.20):
+        hero.str_gain=3.8
+        hero.armor -= 1
+        hero.movement_speed -= 15
     if(patchNum == 7.12):
         hero.armor = hero.armor - 1 #counteract 7.13 attribute case
     if(patchNum == 7.17):
@@ -337,6 +373,8 @@ def lycan(patchNum, hero):
     return hero
  
 def magnus(patchNum, hero):
+    if(patchNum == 7.20):
+        hero.str_gain = 3.7
     if(patchNum == 7.16):
         hero.strength = hero.strength - 1
     if(patchNum == 7.09):
@@ -357,6 +395,8 @@ def magnus(patchNum, hero):
     return hero
  
 def nightstalker(patchNum, hero):
+    if(patchNum == 7.20):
+        hero.str_gain = 3.2
     if(patchNum == 7.17):
         hero.movement_speed = 290
     if(patchNum == 7.06):
@@ -395,6 +435,10 @@ def phoenix(patchNum, hero):
     return hero
  
 def pudge(patchNum, hero):
+    if(patchNum == 7.20):
+        hero.damage_upper -= 6
+        hero.damage_lower -= 6
+        hero.damage_avg -= 6
     if(patchNum == 7.13):
         hero.damage_upper = hero.damage_upper - 7
         hero.damage_lower = hero.damage_lower - 7
@@ -406,6 +450,12 @@ def pudge(patchNum, hero):
     return hero
 
 def sand_king(patchNum, hero):
+    if(patchNum == 7.20):
+        hero.intelligence -= 3
+    if(patchNum == 7.19):
+        hero.damage_upper += 2
+        hero.damage_lower += 2
+        hero.damage_avg += 2
     if(patchNum == 7.16):
         hero.damage_upper = hero.damage_upper + 3
         hero.damage_lower = hero.damage_lower + 3
@@ -420,11 +470,15 @@ def sand_king(patchNum, hero):
     return hero
 
 def slardar(patchNum, hero):
+    if(patchNum == 7.19):
+        hero.armor -= 1
     if(patchNum == 6.87):
         hero.movement_speed = 295
     return hero
 
 def spirit_breaker(patchNum, hero):
+    if(patchNum == 7.20):
+        hero.hp_regen -= 0.75
     if(patchNum == 7.15):
         hero.hp_regen = 1
     if(patchNum == 7.06):
@@ -437,6 +491,11 @@ def spirit_breaker(patchNum, hero):
     return hero
 
 def sven(patchNum, hero):
+    if(patchNum == 7.20):
+        hero.str_gain = 3.5
+        hero.movement_speed -= 15
+    if(patchNum == 7.19):
+        hero.movement_speed = 290
     if(patchNum == 7.18):
         hero.damage_upper = hero.damage_upper - 2
         hero.damage_lower = hero.damage_lower - 2
@@ -460,6 +519,8 @@ def sven(patchNum, hero):
     return hero
 
 def tidehunter(patchNum, hero):
+    if(patchNum == 7.20):
+        hero.str_gain = 3.8
     if(patchNum == 7.06):
         hero.turn_rate = 0.4
     if(patchNum == 6.82):
@@ -467,6 +528,10 @@ def tidehunter(patchNum, hero):
     return hero
 
 def shredder(patchNum, hero):
+    if(patchNum == 7.20):
+        hero.intelligence -= 2
+    if(patchNum == 7.19):
+        hero.str_gain = 2.1
     if(patchNum == 7.12):
         hero.armor = hero.armor - 1 #counteract 7.13 attribute case
     if(patchNum == 7.06):
@@ -523,6 +588,8 @@ def treant_protector(patchNum, hero):
     return hero
 
 def tusk(patchNum, hero):
+    if(patchNum == 7.19):
+        hero.str_gain = 3
     if(patchNum == 7.06):
         hero.str_gain = 2.6
     if(patchNum == 7):
@@ -532,11 +599,16 @@ def tusk(patchNum, hero):
     return hero
 
 def underlord(patchNum, hero):
+    if(patchNum == 7.20):
+        hero.movement_speed -= 5
+        hero.intel_gain = 2.6
     if(patchNum == 7.01):
         hero.movement_speed = 305
     return hero
 
 def undying(patchNum, hero):
+    if(patchNum == 7.19):
+        hero.movement_speed = 305
     if(patchNum == 7.05):
         hero.armor = hero.armor - 1
     if(patchNum == 6.87):
@@ -546,6 +618,8 @@ def undying(patchNum, hero):
     return hero
 
 def wraith_king(patchNum, hero):
+    if(patchNum == 7.20):
+        hero.movement_speed -= 15
     if(patchNum == 7.06):
         hero.turn_rate = 0.4
         hero.str_gain = 3.2
@@ -559,9 +633,11 @@ def wraith_king(patchNum, hero):
         hero.intelligence = 23
     return hero
 
-#finished str heroes
+#str heroes
 
 def antimage(patchNum, hero):
+    if(patchNum == 7.20):
+        hero.agility -= 2
     if(patchNum == 7.16):
         hero.damage_lower = hero.damage_lower - 2
         hero.damage_upper = hero.damage_upper - 2
@@ -602,6 +678,8 @@ def arc_warden(patchNum, hero):
     return hero 
 
 def bloodseeker(patchNum, hero):
+    if(patchNum == 7.20):
+        hero.movement_speed -= 5
     #if(patchNum == 7.06):
         #hero.movement_speed = 290
     if(patchNum == 7.05):
@@ -615,6 +693,12 @@ def bloodseeker(patchNum, hero):
     return hero
 
 def bounty_hunter(patchNum, hero):
+    if(patchNum == 7.20):
+        hero.agi_gain = 2.6
+    if(patchNum == 7.19):
+        hero.agi_gain = 3
+        hero.strength = 18
+        hero.str_gain = 2.1
     if(patchNum == 7.06):
         hero.hp_regen = 0.5
         #hero.movement_speed = hero.movement_speed + 5
@@ -625,6 +709,8 @@ def bounty_hunter(patchNum, hero):
     return hero
 
 def broodmother(patchNum, hero):
+    if(patchNum == 7.20):
+        hero.agi_gain = 2.5
     if(patchNum == 7.18):
         hero.agility = 18
     #if(patchNum == 7.06):
@@ -632,6 +718,10 @@ def broodmother(patchNum, hero):
     return hero
 
 def clinkz(patchNum, hero):
+    if(patchNum == 7.20):
+        hero.movement_speed += 5
+    if(patchNum == 7.19):
+        hero.attack_range = 640
     if(patchNum == 7.18):
         hero.strength = 16
     if(patchNum == 7.16):
@@ -654,6 +744,8 @@ def clinkz(patchNum, hero):
     return hero
 
 def drow_ranger(patchNum, hero):
+    if(patchNum == 7.19):
+        hero.agility -= 4
     if(patchNum == 7.18):
         hero.agility = 26
         hero.agi_gain = 1.9
@@ -678,6 +770,13 @@ def drow_ranger(patchNum, hero):
     return hero
 
 def ember_spirit(patchNum, hero):
+    if(patchNum == 7.20):
+        hero.damage_lower = hero.damage_lower - 3
+        hero.damage_upper = hero.damage_upper - 3
+        hero.damage_avg = hero.damage_avg - 3
+    if(patchNum == 7.19):
+        hero.str_gain = 2.4
+        hero.strength = 20
     if(patchNum == 7.12):
         hero.str_gain = hero.str_gain - 0.3
     if(patchNum == 7.11):
@@ -705,6 +804,11 @@ def faceless_void(patchNum, hero):
     return hero
 
 def gyrocopter(patchNum, hero):
+    if(patchNum == 7.20):
+        hero.movement_speed += 5
+    if(patchNum == 7.19):
+        hero.agi_gain = 2.8
+        hero.str_gain = 2.1
     if(patchNum == 7.18):
         hero.agility = 24
     if(patchNum == 7.05):
@@ -718,6 +822,10 @@ def gyrocopter(patchNum, hero):
     return hero
 
 def juggernaut(patchNum, hero):
+    if(patchNum == 7.20):
+        hero.armor += 1
+    if(patchNum == 7.20):
+        hero.agility -= 10
     if(patchNum == 7.16):
         hero.armor = hero.armor - 1
     if(patchNum == 7.06):
@@ -737,6 +845,13 @@ def juggernaut(patchNum, hero):
     return hero
 
 def lone_druid(patchNum, hero):
+    if(patchNum == 7.20):
+        hero.movement_speed += 5
+    if(patchNum == 7.19):
+        hero.movement_speed = 320
+        hero.armor += 2
+        hero.agi_gain = 2.7
+        hero.agility = 24
     if(patchNum == 7.06):
         hero.hp_regen == 0.25
         hero.turn_rate = 0.4
@@ -747,6 +862,10 @@ def lone_druid(patchNum, hero):
     return hero
 
 def luna(patchNum, hero):
+    if(patchNum == 7.20):
+        hero.movement_speed += 5
+    if(patchNum == 7.19):
+        hero.agi_gain = 3.3
     if(patchNum == 7.06):
         hero.str_gain = 2.5
     if(patchNum == 7.01):
@@ -770,6 +889,11 @@ def luna(patchNum, hero):
     return hero
 
 def medusa(patchNum, hero):
+    if(patchNum == 7.20):
+        hero.intel_gain = 2.1
+    if(patchNum == 7.19):
+        hero.agi_gain = 2.5
+        hero.agility = 20
     if(patchNum == 7.06):
         hero.str_gain = 1.95
         hero.movement_speed = 290 
@@ -778,6 +902,13 @@ def medusa(patchNum, hero):
     return hero
 
 def meepo(patchNum, hero):
+    if(patchNum == 7.20):
+        hero.agi_gain = 1.6
+        hero.agility = 23
+        hero.str_gain = 1.6
+    if(patchNum == 7.19):
+        hero.agi_gain = 2.2
+        hero.movement_speed = 310
     if(patchNum == 7.17):
         hero.armor = hero.armor - 2
     if(patchNum == 7.16):
@@ -802,6 +933,10 @@ def meepo(patchNum, hero):
     return hero
 
 def mirana(patchNum, hero):
+    if(patchNum == 7.20):
+        hero.intelligence = 17
+        hero.intel_gain = 1.7
+        hero.movement_speed += 5
     if(patchNum == 7.06):
         hero.agility = 20
         hero.agi_gain = 3.6
@@ -817,6 +952,8 @@ def mirana(patchNum, hero):
     return hero
 
 def monkey_king(patchNum, hero):
+    if(patchNum == 7.20):
+        hero.movement_speed -= 5
     if(patchNum == 7.09):
         hero.damage_upper = hero.damage_upper - 2
         hero.damage_lower = hero.damage_lower - 2
@@ -835,6 +972,8 @@ def monkey_king(patchNum, hero):
     return hero
 
 def morphling(patchNum, hero):
+    if(patchNum == 7.20):
+        hero.str_gain = 2.3
     if(patchNum == 7.06):
         hero.intelligence = 17
     if(patchNum == 7.05):
@@ -849,6 +988,8 @@ def morphling(patchNum, hero):
     return hero
 
 def naga_siren(patchNum, hero):
+    if(patchNum == 7.20):
+        hero.movement_speed -= 5
     if(patchNum == 7.06):
         hero.agi_gain = 2.75
         hero.hp_regen = 1.5
@@ -862,6 +1003,9 @@ def naga_siren(patchNum, hero):
     return hero
 
 def nyx_assassin(patchNum, hero):
+    if(patchNum == 7.20):
+        hero.movement_speed -= 5
+        hero.str_gain = 2.3
     if(patchNum == 7.06):
         hero.damage_upper = hero.damage_upper + 3
         hero.damage_lower = hero.damage_lower + 3
@@ -871,6 +1015,10 @@ def nyx_assassin(patchNum, hero):
     return hero
 
 def pangolier(patchNum, hero):
+    if(patchNum == 7.20):
+        hero.damage_avg = hero.damage_avg - 4
+        hero.damage_lower = hero.damage_lower - 4
+        hero.damage_upper = hero.damage_upper - 4
     if(patchNum == 7.15):
         hero.hp_regen = 1.5
     if(patchNum == 7.12):
@@ -878,6 +1026,8 @@ def pangolier(patchNum, hero):
     return hero
 
 def phantom_assassin(patchNum, hero):
+    if(patchNum == 7.20):
+        hero.agi_gain = 3.7
     if(patchNum == 7.15):
         hero.hp_regen = 1.5
     if(patchNum == 7.06):
@@ -888,6 +1038,8 @@ def phantom_assassin(patchNum, hero):
     return hero 
 
 def phantom_lancer(patchNum, hero):
+    if(patchNum == 7.19):
+        hero.intelligence += 2
     if(patchNum == 7.18):
         hero.agi_gain = 2.8
         hero.intelligence = hero.intelligence + 2
@@ -921,6 +1073,11 @@ def razor(patchNum, hero):
     return hero
 
 def riki(patchNum, hero):
+    if(patchNum == 7.20):
+        hero.movement_speed -= 10
+        hero.damage_avg -= 4
+        hero.damage_upper -= 4
+        hero.damage_lower -= 4
     if(patchNum == 7.17):
         hero.damage_upper = hero.damage_upper - 3
         hero.damage_lower = hero.damage_lower - 3
@@ -951,6 +1108,13 @@ def riki(patchNum, hero):
     return hero
 
 def shadow_fiend(patchNum, hero):
+    if(patchNum == 7.20):
+        hero.strength -= 3
+        hero.intel_gain = 2.0
+        hero.movement_speed += 5
+        hero.armor -= 1
+    if(patchNum == 7.19):
+        hero.armor -= 1
     if(patchNum == 7.06):
         hero.hp_regen = 0.25
     if(patchNum == 6.88):
@@ -960,6 +1124,10 @@ def shadow_fiend(patchNum, hero):
     return hero
 
 def slark(patchNum, hero):
+    if(patchNum == 7.20):
+        hero.armor -= 1
+    if(patchNum == 7.19):
+        hero.turn_rate = 0.6
     if(patchNum == 7.13):
         hero.hp_regen = 2.75
     if(patchNum == 7.11):
@@ -975,6 +1143,8 @@ def slark(patchNum, hero):
     return hero
 
 def sniper(patchNum, hero):
+    if(patchNum == 7.20):
+        hero.strength -= 2
     if(patchNum == 7.15):
         hero.night_vision = 1100
     if(patchNum == 7.14):
@@ -991,6 +1161,9 @@ def sniper(patchNum, hero):
     return hero
 
 def spectre(patchNum, hero):
+    if(patchNum == 7.20):
+        hero.strength = 2
+        hero.str_gain = 2.3
     if(patchNum == 7.06):
         hero.turn_rate = 0.4
     if(patchNum == 7.05):
@@ -1000,6 +1173,9 @@ def spectre(patchNum, hero):
     return hero
 
 def templar_assassin(patchNum, hero):
+    if(patchNum == 7.20):
+        hero.agi_gain = 2.6
+        hero.movement_speed += 5
     if(patchNum == 7.15):
         hero.hp_regen = 1.75
     if(patchNum == 7.11):
@@ -1009,6 +1185,9 @@ def templar_assassin(patchNum, hero):
     return hero
 
 def terror_blade(patchNum, hero):
+    if(patchNum == 7.20):
+        hero.str_gain = 1.7
+        hero.strength = 16
     if(patchNum == 7.17):
         hero.agi_gain = 3.7
     if(patchNum == 7.16):
@@ -1027,6 +1206,12 @@ def terror_blade(patchNum, hero):
     return hero
  
 def troll_warlord(patchNum, hero):
+    if(patchNum == 7.20):
+        hero.movement_speed -= 5
+    if(patchNum == 7.19):
+        hero.damage_avg = (38+56)/2
+        hero.damage_lower = 38
+        hero.damage_upper = 56
     if(patchNum == 7.15):
         hero.hp_regen = 1.5
     if(patchNum == 7.06):
@@ -1038,6 +1223,10 @@ def troll_warlord(patchNum, hero):
     return hero
   
 def ursa(patchNum, hero):
+    if(patchNum == 7.20):
+        hero.movement_speed += 5
+        hero.armor += 2
+        hero.movement_speed = 305
     if(patchNum == 7.12):
         hero.str_gain = hero.str_gain - 0.3
     if(patchNum == 7.13):
@@ -1070,6 +1259,10 @@ def vengefulspirit(patchNum, hero):
     return hero
  
 def venomancer(patchNum, hero):
+    if(patchNum == 7.20):
+        hero.str_gain = 1.9
+    if(patchNum == 7.19):
+        hero.agility -= 4
     if(patchNum == 7.06):
         hero.turn_rate = 0.4
         hero.movement_speed = hero.movement_speed + 5
@@ -1093,6 +1286,8 @@ def venomancer(patchNum, hero):
     return hero
 
 def viper(patchNum, hero):
+    if(patchNum == 7.20):
+        hero.agi_gain = 3.3
     if(patchNum == 7.06):
         hero.turn_rate = 0.4
         hero.movement_speed = hero.movement_speed + 5
@@ -1134,9 +1329,11 @@ def weaver(patchNum, hero):
         hero.base_attack_time = 1.7
     return hero
 
-#finished agi heroes
+#agi heroes
 
 def ancient_apparition(patchNum, hero):
+    if(patchNum == 7.20):
+        hero.intel_gain = 3
     if(patchNum == 7.14):
         hero.damage_lower = 19
         hero.damage_upper = 29
@@ -1147,6 +1344,10 @@ def ancient_apparition(patchNum, hero):
     return hero
 
 def bane(patchNum, hero):
+    if(patchNum == 7.20):
+        hero.str_gain = 2.4
+        hero.agi_gain = 2.4
+        hero.intel_gain = 2.8
     if(patchNum == 7.16):
         hero.damage_lower = hero.damage_lower + 2
         hero.damage_upper = hero.damage_upper + 2
@@ -1182,6 +1383,8 @@ def batrider(patchNum, hero):
     return hero
 
 def chen(patchNum, hero):
+    if(patchNum == 7.20):
+        hero.movement_speed += 5
     if(patchNum == 7.06):
         hero.attack_range = 600
     if(patchNum == 6.85):
@@ -1189,6 +1392,10 @@ def chen(patchNum, hero):
     return hero
 
 def crystal_maiden(patchNum, hero):
+    if(patchNum == 7.19):
+        hero.damage_avg -= 2
+        hero.damage_upper -= 2
+        hero.damage_lower -= 2
     if(patchNum == 7.15):
         hero.damage_lower = hero.damage_lower - 2
         hero.damage_upper = hero.damage_upper - 2
@@ -1208,6 +1415,9 @@ def crystal_maiden(patchNum, hero):
     return hero
 
 def dark_seer(patchNum, hero):
+    if(patchNum == 7.20):
+        hero.armor += 2
+        hero.agi_gain = 1.2
     if(patchNum == 7.12):
         hero.str_gain = 2.6
         hero.strength = 22
@@ -1224,10 +1434,16 @@ def dark_seer(patchNum, hero):
     return hero
  
 def dark_willow(patchNum, hero):
+    if(patchNum == 7.20):
+        hero.movement_speed += 5
     #no changes
     return hero
 
 def dazzle(patchNum, hero):
+    if(patchNum == 7.20):
+        hero.movement_speed += 5
+    if(patchNum == 7.19):
+        hero.intel_gain = 3.4
     if(patchNum == 7.17):
         hero.damage_lower = hero.damage_lower - 6
         hero.damage_upper = hero.damage_upper - 6
@@ -1241,6 +1457,15 @@ def dazzle(patchNum, hero):
     return hero
 
 def death_prophet(patchNum, hero):
+    if(patchNum == 7.20):
+        hero.movement_speed += 5
+        hero.damage_avg -= 3
+        hero.damage_upper -= 3
+        hero.damage_lower -= 3
+    if(patchNum == 7.19):
+        hero.movement_speed = 305
+    if(patchNum == 7.17):
+        hero.armor += 1
     if(patchNum == 7.12):
         hero.str_gain = hero.str_gain - 0.3
     if(patchNum == 7.17):
@@ -1266,10 +1491,17 @@ def death_prophet(patchNum, hero):
     return hero
  
 def disruptor(patchNum, hero):
+    if(patchNum == 7.20):
+        hero.movement_speed += 5
+        hero.armor -= 1
     #no changes
     return hero
 
 def enchantress(patchNum, hero):
+    if(patchNum == 7.20):
+        hero.movement_speed += 5
+    if(patchNum == 7.19):
+        hero.armor -= 2
     if(patchNum == 7.18):
         hero.strength = 19
         hero.str_gain = 1.3
@@ -1304,15 +1536,23 @@ def enchantress(patchNum, hero):
     return hero
 
 def enigma(patchNum, hero):
+    if(patchNum == 7.19):
+        hero.movement_speed = 300
     if(patchNum == 7.06):
         hero.strength = 17
     return hero
 
 def grimstroke(patchNum, hero):
+    if(patchNum == 7.20):
+        hero.movement_speed += 5
     #nothing here bois
     return hero
 
 def invoker(patchNum, hero):
+    if(patchNum == 7.20):
+        hero.damage_avg -= 3
+        hero.damage_lower -= 3
+        hero.damage_upper -= 3
     if(patchNum == 7.04):
         hero.strength = 17
     if(patchNum == 7):
@@ -1342,6 +1582,8 @@ def jakiro(patchNum, hero):
     return hero
 
 def keeper_of_the_light(patchNum, hero):
+    if(patchNum == 7.20):
+        hero.movement_speed += 5
     if(patchNum == 7.14):
         hero.damage_lower = 18
         hero.damage_upper = 25
@@ -1357,6 +1599,9 @@ def keeper_of_the_light(patchNum, hero):
     return hero
 
 def leshrac(patchNum, hero):
+    if(patchNum == 7.20):
+        hero.agi_gain = 1.7
+        hero.movement_speed += 5
     if(patchNum == 7.12):
         hero.str_gain = hero.str_gain - 0.3
     if(patchNum == 7.15):
@@ -1377,10 +1622,23 @@ def leshrac(patchNum, hero):
     return hero
  
 def lich(patchNum, hero):
+    if(patchNum == 7.20):
+        hero.movement_speed = 310
+    if(patchNum == 7.19):
+        hero.intel_gain = 3.3
+        hero.intelligence = 16
     
     return hero
 
 def lina(patchNum, hero):
+    if(patchNum == 7.20):
+        hero.intelligence -= 2
+        hero.movement_speed += 5
+        hero.damage_lower -= 3
+        hero.damage_upper -= 3
+        hero.damage_avg -= 3
+    if(patchNum == 7.19):
+        hero.armor -= 2
     if(patchNum == 7.07):
         hero.intelligence = hero.intelligence - 3
     if(patchNum == 6.87):
@@ -1408,6 +1666,17 @@ def lion(patchNum, hero):
     return hero
 
 def furion(patchNum, hero):
+    if(patchNum == 7.20):
+        hero.agi_gain = 2.8
+    if(patchNum == 7.19):
+        hero.agi_gain = 2.4
+        hero.armor -= 1
+    if(patchNum == 7.18):
+        hero.damage_avg += 3
+        hero.damage_upper += 3
+        hero.damage_lower += 3
+    if(patchNum == 7.17):
+        hero.agi_gain = 1.9
     if(patchNum == 7.12):
         hero.str_gain = hero.str_gain - 0.3
     if(patchNum == 7.18):
@@ -1427,6 +1696,12 @@ def furion(patchNum, hero):
     return hero
  
 def necrophos(patchNum, hero):
+    if(patchNum == 7.19):
+        hero.attack_range = 550
+    if(patchNum == 7.18):
+        hero.agility = 15
+        hero.agi_gain = 1.2
+        hero.movement_speed = 285
     if(patchNum == 7.12):
         hero.str_gain = hero.str_gain - 0.3
     if(patchNum == 7.18):
@@ -1465,6 +1740,8 @@ def ogre_magi(patchNum, hero):
     return hero
 
 def oracle(patchNum, hero):
+    if(patchNum == 7.20):
+        hero.movement_speed += 5
     if(patchNum == 7.17):
         hero.intel_gain = 3.2
     if(patchNum == 7.09):
@@ -1479,6 +1756,11 @@ def oracle(patchNum, hero):
     return hero
 
 def outworld_devourer(patchNum, hero):
+    if(patchNum == 7.20):
+        hero.movement_speed += 5
+        hero.intel_gain = 2.7
+        hero.armor -= 1
+        hero.intelligence = 24
     if(patchNum == 7.12):
         hero.strength = hero.strength + 2 #counteract -2 str to all int heroes
     if(patchNum == 6.87):
@@ -1495,6 +1777,10 @@ def outworld_devourer(patchNum, hero):
     return hero
 
 def puck(patchNum, hero):
+    if(patchNum == 7.20):
+        hero.movement_speed += 5
+        hero.armor -= 1
+        hero.intel_gain = 2.4
     if(patchNum == 7.06):
         hero.turn_rate = 0.4
     if(patchNum == 7.05):
@@ -1516,6 +1802,8 @@ def puck(patchNum, hero):
     return hero
 
 def pugna(patchNum, hero):
+    if(patchNum == 7.20):
+        hero.movement_speed += 5
     if(patchNum == 7.18):
         hero.damage_lower = hero.damage_lower + 2
         hero.damage_upper = hero.damage_upper + 2
@@ -1534,6 +1822,10 @@ def pugna(patchNum, hero):
     return hero
 
 def queen_of_pain(patchNum, hero):
+    if(patchNum == 7.20):
+        hero.movement_speed += 5
+        hero.agility = 18
+        hero.agi_gain = 2
     if(patchNum == 7.12):
         hero.str_gain = hero.str_gain - 0.3
     if(patchNum == 7.05):
@@ -1549,6 +1841,13 @@ def queen_of_pain(patchNum, hero):
     return hero
 
 def rubick(patchNum, hero):
+    if(patchNum == 7.19):
+        hero.agility = 14
+        hero.agi_gain = 1.6
+        hero.damage_lower -= 3
+        hero.damage_upper -= 3
+        hero.damage_avg -= 3
+        hero.intelligence = 2.4
     if(patchNum == 7.14):
         hero.intelligence = 27
         hero.damage_lower = hero.damage_lower - 2
@@ -1561,6 +1860,8 @@ def rubick(patchNum, hero):
     return hero
 
 def shadow_demon(patchNum, hero):
+    if(patchNum == 7.20):
+        hero.movement_speed += 5
     if(patchNum == 7.13):
         hero.str_gain = 2.2
     if(patchNum == 7.05):
@@ -1587,6 +1888,8 @@ def shadow_shaman(patchNum, hero):
     return hero
 
 def silencer(patchNum, hero):
+    if(patchNum == 7.20):
+        hero.movement_speed += 5
     if(patchNum == 6.87):
         hero.agility = 16
     if(patchNum == 6.83):
@@ -1596,6 +1899,8 @@ def silencer(patchNum, hero):
     return hero
 
 def skywrath_mage(patchNum, hero):
+    if(patchNum == 7.20):
+        hero.movement_speed += 5
     if(patchNum == 7.04):
         hero.movement_speed = 325
     if(patchNum == 6.82):
@@ -1607,6 +1912,11 @@ def skywrath_mage(patchNum, hero):
     return hero
 
 def storm_spirit(patchNum, hero):
+    if(patchNum == 7.20):
+        hero.damage_avg -= 2
+        hero.damage_upper -= 2
+        hero.damage_lower -= 2
+        hero.intel_gain = 3
     if(patchNum == 7.06):
         hero.agi_gain = 1.8
     if(patchNum == 6.86):
@@ -1621,6 +1931,11 @@ def storm_spirit(patchNum, hero):
     return hero
 
 def techies(patchNum, hero):
+    if(patchNum == 7.20):
+        hero.movement_speed += 5
+    if(patchNum == 7.19):
+        hero.movement_speed = 270
+        hero.intelligence -= 2
     return hero
 
 def tinker(patchNum, hero):
@@ -1633,6 +1948,9 @@ def tinker(patchNum, hero):
     return hero
 
 def visage(patchNum, hero):
+    if(patchNum == 7.20):
+        hero.str_gain = 3.2
+        hero.strength = 24
     if(patchNum == 7.12):
         hero.str_gain = hero.str_gain - 0.3
     if(patchNum == 7):
@@ -1647,6 +1965,10 @@ def visage(patchNum, hero):
     return hero
 
 def warlock(patchNum, hero):
+    if(patchNum == 7.20):
+        hero.intelligence -= 3
+        hero.movement_speed += 5
+        hero.strength -= 2
     if(patchNum == 7.06):
         hero.turn_rate = 0.4
     if(patchNum == 6.85):
@@ -1654,6 +1976,8 @@ def warlock(patchNum, hero):
     return hero
 
 def windranger(patchNum, hero):
+    if(patchNum == 7.20):
+        hero.movement_speed += 5
     if(patchNum == 7.17):
         hero.intelligence = hero.intelligence + 2
     if(patchNum == 7.06):
@@ -1673,6 +1997,8 @@ def winter_wyvern(patchNum, hero):
     return hero
 
 def witch_doctor(patchNum, hero):
+    if(patchNum == 7.20):
+        hero.movement_speed += 5
     if(patchNum == 7.06):
         hero.turn_rate = 0.4
     return hero
@@ -1711,6 +2037,10 @@ The list starts on the newest patch and contains all patches going to patch 6.78
 
 Listpatch = []
 def init_ListPatch():
+    patch = Patch(7.21)
+    Listpatch.append(patch)
+    patch = Patch(7.20)
+    Listpatch.append(patch)
     patch = Patch(7.19)
     Listpatch.append(patch)
     patch = Patch(7.18)
@@ -2045,9 +2375,9 @@ def calculate_stats(patch_num, heroes):
 
             
 '''
-This is for doing calculations with the stats. Calculating hp mp and armor at lvl 25 varies per patch as well as the engine rounds down the value when doing the calculations.
+This is for doing calculations with the stats. Calculating hp mp and armor at lvl 25 varies per patch as well as the engine rounds down the value when
+doing the calculations.
 '''
-
 def calc_attribute(patch_num, heroes):
     for i in range(len(heroes)):
         if(patch_num >= 7.13):
@@ -2102,7 +2432,7 @@ def calc_attribute(patch_num, heroes):
 There must be a current copy of the hero stats from the newest patch for which to build the rest of the matches onto. This will load in the data.
 '''
 
-with open('hero_stats.csv') as csv_file:
+with open('hero_stats721.csv') as csv_file:
     csv_reader = csv.reader(csv_file, delimiter=',')
     line_count = 0
     for row in csv_reader:
@@ -2124,7 +2454,8 @@ print("finished init")
 
 
 '''
-This is to call all of the previous functions on a given patch and apply all the changes made to that patch. Then we take all the changes made to the patch and waterfall it down to all the other patches that come before it.
+This is to call all of the previous functions on a given patch and apply all the changes made to that patch. Then we take all the changes made to
+the patch and waterfall it down to all the other patches that come before it.
 '''
 
 for x in range(len(Listpatch)):
@@ -2135,18 +2466,21 @@ for x in range(len(Listpatch)):
 #populate buff/nerf
 
 '''
-Since a hero will be both buffed and nerfed in a single patch (buffed in patch 7.19, nerfed in 7.19b) we must figure out if the hero  is buffed or nerfed for the entirety of that patch. We then import this data and assign the proper nerf/buff status to the proper hero in the proper patch. This must be done seperatly because we need to explicilty have nerf/buff for each hero and for each patch while the stats can be derived from the patch before it. This must be updated to include new patches
+Since a hero will be both buffed and nerfed in a single patch (buffed in patch 7.19, nerfed in 7.19b) we must figure out if the hero 
+is buffed or nerfed for the entirety of that patch. We then import this data and assign the proper nerf/buff status to the proper hero in 
+the proper patch. This must be done seperatly because we need to explicilty have nerf/buff for each hero and for each patch while the stats 
+can be derived from the patch before it. This must be updated to include new patches
 '''
 
-with open('buff7_18.csv') as csv_file:
-    csv_reader = csv.reader(csv_file, delimiter=',')
-    line_count = 0
-    for row in csv_reader:
-        if(line_count == 0):
-            line_count += 1 #column names
-        else:
-            Listpatch[1].heroes[line_count-1].nerf_buff = copy.deepcopy(row[1])
-            line_count += 1
+# with open('buff7_18.csv') as csv_file:
+#     csv_reader = csv.reader(csv_file, delimiter=',')
+#     line_count = 0
+#     for row in csv_reader:
+#         if(line_count == 0):
+#             line_count += 1 #column names
+#         else:
+#             Listpatch[1].heroes[line_count-1].nerf_buff = copy.deepcopy(row[1])
+#             line_count += 1
 
 with open('hero_buffs.csv') as csv_file:
     csv_reader = csv.reader(csv_file, delimiter = ',')
@@ -2166,10 +2500,9 @@ This is for printing out hero attributes for debugging. This will print certain 
 for x in range(len(Listpatch)):
     for i in range(len(Listpatch[x].heroes)):
         z = Listpatch[x]
-        if(z.heroes[i].hero_id == 'npc_dota_hero_antimage'):
+        if(z.heroes[i].hero_id == 'npc_dota_hero_bristleback'):
             print(str(z.patch_num) + ": " + z.heroes[i].hero_id + " ms: " + str(z.heroes[i].movement_speed) + " armor: " + 
-            str(z.heroes[i].armor) + " damage_avg: " + str(z.heroes[i].damage_avg) + "nerf/buff: " + z.heroes[i].nerf_buff
-            + " buff/nerf: " + str(z.heroes[i].nerf_buff))
+            str(z.heroes[i].armor) + " damage_avg: " + str(z.heroes[i].damage_avg) + "nerf/buff: " + z.heroes[i].nerf_buff)
 
 '''
 Saving each patch to its own csv file.
