@@ -74,9 +74,8 @@ class Hero:
     def __iter__(self):
         return iter([self.hero_id, self.nerf_buff, self.attribute, self.strength, self.intelligence, self.agility,
         self.str_gain, self.intel_gain, self.agi_gain, self.attack_range, self.base_attack_time, self.movement_speed,
-        self.armor, self.damage_lower, self.damage_upper, self.missile_speed, self.cast_duration_before, self.cast_duration_after,
-        self.hp_regen, self.mp_regen, self.magic_res, self.day_vision, self.night_vision, self.turn_rate, self.damage_avg,
-        self.str_25, self.int_25, self.agi_25])
+        self.armor, self.damage_lower, self.damage_upper, self.damage_avg, self.missile_speed, self.cast_duration_before, self.cast_duration_after,
+        self.hp_regen, self.mp_regen, self.magic_res, self.day_vision, self.night_vision, self.turn_rate])
 '''
 This next section is changing an attribute for the patch. There are two things to take note when implementing a change to an attribute.
 Firstly (this is more easily explained throught example): You must change the attribute for the patch before it was changed. Such as,
@@ -2472,7 +2471,7 @@ the proper patch. This must be done seperatly because we need to explicilty have
 can be derived from the patch before it. This must be updated to include new patches
 '''
 
-# with open('buff7_18.csv') as csv_file:
+# with open('hero_buffs.csv') as csv_file:
 #     csv_reader = csv.reader(csv_file, delimiter=',')
 #     line_count = 0
 #     for row in csv_reader:
@@ -2492,7 +2491,8 @@ with open('hero_buffs.csv') as csv_file:
             for i in range(len(row)-1):
                 Listpatch[i].heroes[line_count].nerf_buff = row[i+1]
             line_count += 1
-            
+
+
 '''
 This is for printing out hero attributes for debugging. This will print certain attributes for certain heroes for all the patches.
 '''
@@ -2511,5 +2511,6 @@ for x in range(len(Listpatch)):
     name = round(Listpatch[x].patch_num,2)
     with open("%f.csv" %name, "w") as f:
         writer = csv.writer(f)
+        writer.writerow(['hero_id','nerf/buff','attribute','strength','intelligence','agility','strength_gain','intellicene_gain','agility_gain','attack_range','base_attack_time','movement_speed','armor','damage_lower','damage_upper','damage_average','missile_speed','cast_duration_before','cast_duration_after','hp_regen','mp_regen','magic_resistance','day_vision','night_vision','turn_rate'])
         for i in range(len(Listpatch[x].heroes)):
             writer.writerow(Listpatch[x].heroes[i])
